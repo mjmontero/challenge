@@ -2743,3 +2743,148 @@ Processing by Api::V1::TicketsController#create as JSON
 Completed 422 Unprocessable Entity in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 1420)
 
 
+  [1m[35m (43.5ms)[0m  [1m[35mCREATE DATABASE `challenge_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (44.7ms)[0m  [1m[35mCREATE DATABASE `challenge_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (55.2ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (56.0ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('6387844451898652155', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (10.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateTickets (20220825175623)
+  [1m[35m (72.9ms)[0m  [1m[35mCREATE TABLE `tickets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` int unsigned, `title` varchar(255), `received_at` datetime(6), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220825175623')[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTags (20220825175709)
+  [1m[35m (54.3ms)[0m  [1m[35mCREATE TABLE `tags` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `tag_name` varchar(255), `count` int unsigned, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220825175709')[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTicketTags (20220825183357)
+  [1m[35m (51.2ms)[0m  [1m[35mCREATE TABLE `ticket_tags` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `tag_id` int unsigned, `ticket_id` int unsigned, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220825183357')[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-08-27 18:36:07.410011', '2022-08-27 18:36:07.410011')[0m
+  [1m[36mTRANSACTION (41.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('6387844451898652155')[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started POST "/api/v1/tickets" for 127.0.0.1 at 2022-08-27 12:39:12 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "ticket"=>{"user_id"=>1, "title"=>"test"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fd9f07c3fb8>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fd9f07c3fb8>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTicket Create (0.6ms)[0m  [1m[32mINSERT INTO `tickets` (`user_id`, `title`, `received_at`, `created_at`, `updated_at`) VALUES (1, 'test', '2022-08-27 18:39:12.918691', '2022-08-27 18:39:12.918550', '2022-08-27 18:39:12.918550')[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT `tags`.* FROM `tags` WHERE `tags`.`tag_name` IN ('1', '2', '3')[0m
+  ↳ app/models/ticket.rb:23:in `block in create_tags'
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('1', 1, '2022-08-27 18:39:12.939416', '2022-08-27 18:39:12.939416')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (1.3ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTRANSACTION (39.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 50.1ms | Allocations: 19043)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'challenge_development.tags.tag_name'; this is incompatible with sql_mode=only_full_group_by):
+  
+app/models/tag.rb:5:in `send_webhook'
+app/models/ticket.rb:24:in `block in create_tags'
+app/models/ticket.rb:22:in `each'
+app/models/ticket.rb:22:in `create_tags'
+app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Started POST "/api/v1/tickets" for 127.0.0.1 at 2022-08-27 12:46:53 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "ticket"=>{"user_id"=>1, "title"=>"test"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007ff4619efec8>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007ff4619efec8>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO `tickets` (`user_id`, `title`, `received_at`, `created_at`, `updated_at`) VALUES (1, 'test', '2022-08-27 18:46:54.104783', '2022-08-27 18:46:54.103642', '2022-08-27 18:46:54.103642')[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTag Load (1.7ms)[0m  [1m[34mSELECT `tags`.* FROM `tags` WHERE `tags`.`tag_name` IN ('1', '2', '3')[0m
+  ↳ app/models/ticket.rb:23:in `block in create_tags'
+  [1m[36mTag Create (0.9ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('1', 1, '2022-08-27 18:46:54.128162', '2022-08-27 18:46:54.128162')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (1.8ms)[0m  [1m[34mSELECT tag_name, Max(count) as count GROUP BY tag_name FROM `tags` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTRANSACTION (17.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 103ms (ActiveRecord: 79.6ms | Allocations: 18629)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `tags` ORDER BY `tags`.`id` ASC LIMIT 1' at line 1):
+  
+app/models/tag.rb:5:in `send_webhook'
+app/models/ticket.rb:24:in `block in create_tags'
+app/models/ticket.rb:22:in `each'
+app/models/ticket.rb:22:in `create_tags'
+app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Started POST "/api/v1/tickets" for 127.0.0.1 at 2022-08-27 12:48:19 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "ticket"=>{"user_id"=>1, "title"=>"test"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fa3318562f0>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fa3318562f0>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTicket Create (1.3ms)[0m  [1m[32mINSERT INTO `tickets` (`user_id`, `title`, `received_at`, `created_at`, `updated_at`) VALUES (1, 'test', '2022-08-27 18:48:19.861792', '2022-08-27 18:48:19.861702', '2022-08-27 18:48:19.861702')[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT `tags`.* FROM `tags` WHERE `tags`.`tag_name` IN ('1', '2', '3')[0m
+  ↳ app/models/ticket.rb:23:in `block in create_tags'
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('1', 1, '2022-08-27 18:48:19.877190', '2022-08-27 18:48:19.877190')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (1.4ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`tag_name` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTRANSACTION (14.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 24.1ms | Allocations: 18664)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'challenge_development.tags.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by):
+  
+app/models/tag.rb:5:in `send_webhook'
+app/models/ticket.rb:24:in `block in create_tags'
+app/models/ticket.rb:22:in `each'
+app/models/ticket.rb:22:in `create_tags'
+app/controllers/api/v1/tickets_controller.rb:6:in `create'
+Started POST "/api/v1/tickets" for 127.0.0.1 at 2022-08-27 12:48:57 -0600
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "ticket"=>{"user_id"=>1, "title"=>"test"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fa33036e270>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007fa33036e270>, params: {"user_id"=>1, "title"=>"test", "tags"=>["1", "2", "3"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTicket Create (0.9ms)[0m  [1m[32mINSERT INTO `tickets` (`user_id`, `title`, `received_at`, `created_at`, `updated_at`) VALUES (1, 'test', '2022-08-27 18:48:57.389414', '2022-08-27 18:48:57.389344', '2022-08-27 18:48:57.389344')[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT `tags`.* FROM `tags` WHERE `tags`.`tag_name` IN ('1', '2', '3')[0m
+  ↳ app/models/ticket.rb:23:in `block in create_tags'
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('1', 1, '2022-08-27 18:48:57.402758', '2022-08-27 18:48:57.402758')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`id` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTag Create (43.7ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('2', 1, '2022-08-27 18:48:58.334318', '2022-08-27 18:48:58.334318')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (1.4ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`id` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('3', 1, '2022-08-27 18:48:59.168947', '2022-08-27 18:48:59.168947')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`id` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  Rendering api/v1/tickets/create.json.jbuilder
+  Rendered api/v1/tickets/_ticket.json.jbuilder (Duration: 1.6ms | Allocations: 138)
+  Rendered api/v1/tickets/create.json.jbuilder (Duration: 3.9ms | Allocations: 534)
+Completed 201 Created in 2584ms (Views: 8.7ms | ActiveRecord: 58.4ms | Allocations: 21556)
+
+
