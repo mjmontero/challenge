@@ -54,5 +54,5 @@ curl --location --request POST 'http://localhost:3000/api/v1/tickets' \
 
 ## How to run the test suite
 
-´´´bundle exec rspec´´´
+```bundle exec rspec```
 
