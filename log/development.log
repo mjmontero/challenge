@@ -2888,3 +2888,44 @@ Processing by Api::V1::TicketsController#create as JSON
 Completed 201 Created in 2584ms (Views: 8.7ms | ActiveRecord: 58.4ms | Allocations: 21556)
 
 
+Started POST "/api/v1/tickets" for ::1 at 2022-08-27 12:54:35 -0600
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1", "2", "3", "4", "5"], "ticket"=>{"user_id"=>1, "title"=>"test3"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007f8464f74c30>, params: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1", "2", "3", "4", "5"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test3"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007f8464f74c30>, params: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1", "2", "3", "4", "5"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test3"}} }[0m
+Completed 422 Unprocessable Entity in 24ms (Views: 10.6ms | ActiveRecord: 2.4ms | Allocations: 12753)
+
+
+Started POST "/api/v1/tickets" for ::1 at 2022-08-27 12:54:52 -0600
+Processing by Api::V1::TicketsController#create as JSON
+  Parameters: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1"], "ticket"=>{"user_id"=>1, "title"=>"test3"}}
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007f84653737f0>, params: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test3"}} }[0m
+[31mUnpermitted parameters: :format, :ticket. Context: { controller: Api::V1::TicketsController, action: create, request: #<ActionDispatch::Request:0x00007f84653737f0>, params: {"user_id"=>1, "title"=>"test3", "tags"=>["bye", "1"], "format"=>:json, "controller"=>"api/v1/tickets", "action"=>"create", "ticket"=>{"user_id"=>1, "title"=>"test3"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTicket Create (0.3ms)[0m  [1m[32mINSERT INTO `tickets` (`user_id`, `title`, `received_at`, `created_at`, `updated_at`) VALUES (1, 'test3', '2022-08-27 18:54:52.245228', '2022-08-27 18:54:52.244787', '2022-08-27 18:54:52.244787')[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT `tags`.* FROM `tags` WHERE `tags`.`tag_name` IN ('bye', '1')[0m
+  ↳ app/models/ticket.rb:23:in `block in create_tags'
+  [1m[36mTag Update (0.3ms)[0m  [1m[33mUPDATE `tags` SET `tags`.`count` = 17, `tags`.`updated_at` = '2022-08-27 18:54:52.268600' WHERE `tags`.`id` = 36[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`id` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO `tags` (`tag_name`, `count`, `created_at`, `updated_at`) VALUES ('1', 1, '2022-08-27 18:54:53.140788', '2022-08-27 18:54:53.140788')[0m
+  ↳ app/models/ticket.rb:24:in `block in create_tags'
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT tag_name, Max(count) as count FROM `tags` GROUP BY `tags`.`id` ORDER BY `tags`.`id` ASC LIMIT 1[0m
+  ↳ app/models/tag.rb:5:in `send_webhook'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tickets_controller.rb:6:in `create'
+  Rendering api/v1/tickets/create.json.jbuilder
+  Rendered api/v1/tickets/_ticket.json.jbuilder (Duration: 0.9ms | Allocations: 147)
+  Rendered api/v1/tickets/create.json.jbuilder (Duration: 3.8ms | Allocations: 970)
+Completed 201 Created in 1734ms (Views: 18.5ms | ActiveRecord: 4.4ms | Allocations: 28352)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('6387844451898652155', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('6387844451898652155')[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m

@@ -44,5 +44,13 @@ RSpec.describe Ticket, type: :model do
         expect(tag.count).to eq 1
       end
     end
+
+    context "no tags present" do
+      it "creates ticket without tags" do
+        ticket_without_tags = Ticket.new(user_id: 1, title: "test")
+        expect(ticket_without_tags.save).to be true
+        expect(ticket_without_tags.tags).to be nil
+      end
+    end
   end
 end
