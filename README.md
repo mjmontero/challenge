@@ -49,7 +49,7 @@ curl --location --request POST 'http://localhost:3000/api/v1/tickets' \
 2. Copy your unique URL
 3. Paste the value in WEBHOOK_URL in config/initializers/my_constants.rb
 4. Restart the server
-5. Follow the steps on "How to use it"
+5. Create a new ticket with a [POST request](#How-to-use-it)
 6. Look how the request is sent to Webhook.site
 
 ## How to run the test suite
